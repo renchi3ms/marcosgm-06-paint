@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.Controller">
+    <children>
+
+        <!-- Left: drawing area -->
+        <Canvas fx:id="canvas" height="500.0" width="600.0" />
+
+        <!-- Center: tools -->
+        <VBox prefWidth="140.0" spacing="8.0" style="-fx-background-color: #eeeeee;">
+            <padding><Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /></padding>
+            <children>
+                <!-- Top: line width -->
+                <Label style="-fx-font-weight: bold;" text="Width" />
+            <Slider fx:id="brushSizeSlider" blockIncrement="1.0" max="50.0" min="1.0" value="1.0" />
+                <fx:define>
+                    <ToggleGroup fx:id="objectGroup" />
+                </fx:define>
+
+                <!-- Push the colors to the bottom -->
+                <Region VBox.vgrow="ALWAYS" />
+                <Separator />
+
+                <!-- Bottom: predefined colors -->
+                <Label style="-fx-font-weight: bold;" text="Color" />
+                <Canvas fx:id="colorsCanvas" height="60.0" width="120.0" />
+            </children>
+        </VBox>
+
+        <!-- Right: objects list (to do) -->
+        <VBox prefWidth="160.0">
+            <padding><Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /></padding>
+            <children>
+                <Label style="-fx-font-weight: bold;" text="Objects" />
+            <RadioButton fx:id="freePaintButton" mnemonicParsing="false" selected="true" text="Free paint" toggleGroup="$objectGroup">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </RadioButton>
+            <RadioButton fx:id="lineButton" mnemonicParsing="false" text="Line" toggleGroup="$objectGroup">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </RadioButton>
+            <RadioButton fx:id="rectangleButton" mnemonicParsing="false" text="Rectangle" toggleGroup="$objectGroup">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </RadioButton>
+            </children>
+        </VBox>
+
+    </children>
+</HBox>
