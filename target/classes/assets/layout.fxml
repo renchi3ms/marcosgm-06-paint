@@ -2,11 +2,12 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
@@ -24,40 +25,61 @@
                 <!-- Top: line width -->
                 <Label style="-fx-font-weight: bold;" text="Width" />
             <Slider fx:id="brushSizeSlider" blockIncrement="1.0" max="50.0" min="1.0" value="1.0" />
-                <fx:define>
-                    <ToggleGroup fx:id="objectGroup" />
-                </fx:define>
-
-                <!-- Push the colors to the bottom -->
-                <Region VBox.vgrow="ALWAYS" />
-                <Separator />
-
-                <!-- Bottom: predefined colors -->
-                <Label style="-fx-font-weight: bold;" text="Color" />
-                <Canvas fx:id="colorsCanvas" height="60.0" width="120.0" />
-            </children>
-        </VBox>
-
-        <!-- Right: objects list (to do) -->
-        <VBox prefWidth="160.0">
-            <padding><Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /></padding>
-            <children>
-                <Label style="-fx-font-weight: bold;" text="Objects" />
-            <RadioButton fx:id="freePaintButton" mnemonicParsing="false" selected="true" text="Free paint" toggleGroup="$objectGroup">
+            <RadioButton fx:id="freePaintButton" mnemonicParsing="false" selected="true" text="Free paint">
                <VBox.margin>
                   <Insets bottom="5.0" top="5.0" />
                </VBox.margin>
             </RadioButton>
-            <RadioButton fx:id="lineButton" mnemonicParsing="false" text="Line" toggleGroup="$objectGroup">
+            <RadioButton fx:id="lineButton" mnemonicParsing="false" text="Line">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </RadioButton>
-            <RadioButton fx:id="rectangleButton" mnemonicParsing="false" text="Rectangle" toggleGroup="$objectGroup">
+            <RadioButton fx:id="rectangleButton" mnemonicParsing="false" text="Rectangle">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </RadioButton>
+
+                <!-- Push the colors to the bottom -->
+                <Region prefHeight="45.0" prefWidth="120.0" VBox.vgrow="ALWAYS" />
+                <Separator />
+
+                <!-- Bottom: predefined colors -->
+                <Label style="-fx-font-weight: bold;" text="Color stroke" />
+                <Canvas fx:id="colorsCanvas" height="60.0" width="120.0" />
+            <VBox fx:id="fillPaletteBox" managed="false" visible="false">
+               <children>
+                  <Label style="-fx-font-weight: bold;" text="Color fill">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Canvas fx:id="fillColorsCanvas" height="60.0" width="120.0" />
+               </children>
+            </VBox>
+            </children>
+        </VBox>
+
+        <!-- Right: objects list (to do) -->
+        <VBox alignment="TOP_CENTER" prefWidth="160.0">
+            <padding><Insets bottom="10.0" left="10.0" right="10.0" top="10.0" /></padding>
+            <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                      <Label style="-fx-font-weight: bold;" text="Objects" />
+                  <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
+                     <content>
+                        <VBox fx:id="objectBox" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+            <Button fx:id="deleteButton" mnemonicParsing="false" onMouseClicked="#deleteSelectedObject" text="Delete">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Button>
             </children>
         </VBox>
 
